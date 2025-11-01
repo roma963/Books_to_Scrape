@@ -33,8 +33,6 @@ def next_page_url(html: str, page_url: str) -> str | None:
     nxt = soup.select_one("li.next a")
     return urljoin(page_url, nxt["href"]) if nxt else None
 
-
-
 def crawl(pages: int | None = None):
     """Проходит по страницам каталога и собирает книги."""
     url = START
@@ -51,10 +49,9 @@ def crawl(pages: int | None = None):
             break
 
         url = next_page_url(html, url)
-        time.sleep(0.5)  # пауза между запросами
+        time.sleep(0.5)
 
     return collected
-
 
 
 if __name__ == "__main__":
@@ -79,6 +76,10 @@ if __name__ == "__main__":
 
     print(f"Готово! Собрано записей: {len(rows)}", flush=True)
     print(f"Файл сохранён: {out_path}", flush=True)
+
+
+
+
 
 
 
